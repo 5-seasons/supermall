@@ -10,7 +10,7 @@
       <div slot="item-text">首页</div>
     </tab-bar-item>
 
-    <tab-bar-item link="/category" activeColor="#c04851">
+    <tab-bar-item link="/sort" activeColor="#c04851">
       <img slot="item-icon" src="~assets/img/tabbar/sort.svg" alt="" />
       <img
         slot="item-icon-active"
@@ -20,7 +20,7 @@
       <div slot="item-text">分类</div>
     </tab-bar-item>
 
-    <tab-bar-item link="/shopcart" activeColor="#c04851">
+    <tab-bar-item link="/cart" activeColor="#c04851">
       <img slot="item-icon" src="~assets/img/tabbar/cart.svg" alt="" />
       <img
         slot="item-icon-active"
@@ -30,7 +30,7 @@
       <div slot="item-text">购物车</div>
     </tab-bar-item>
 
-    <tab-bar-item link="/profile" activeColor="#c04851">
+    <tab-bar-item link="/my" activeColor="#c04851">
       <img slot="item-icon" src="~assets/img/tabbar/my.svg" alt="" />
       <img
         slot="item-icon-active"
@@ -55,5 +55,5 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 </style>

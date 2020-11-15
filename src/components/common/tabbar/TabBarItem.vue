@@ -9,35 +9,35 @@
 <script>
 export default {
   name: "TabBarItem",
-  props:{
-    link:String,
-    activeColor:{
-      type:String,
-      default:'red'
-    }
+  props: {
+    link: String,
+    activeColor: {
+      type: String,
+      default: "red",
+    },
   },
   data() {
     return {
       // isActive: true,
-    }
+    };
   },
-  computed:{
-    isActive(){
+  computed: {
+    isActive() {
       return this.$route.path.indexOf(this.link) !== -1;
     },
-    activeStyle(){
-      return this.isActive ? {color:this.activeColor} : {}
-    }
+    activeStyle() {
+      return this.isActive ? { color: this.activeColor } : {};
+    },
   },
-  methods:{
-    itemClick(){
-      this.$router.push(this.link)
-    }
-  }
+  methods: {
+    itemClick() {
+      this.$router.push(this.link);
+    },
+  },
 };
 </script>
 
-<style>
+<style scoped>
 .tab-bar-item {
   flex: 1;
   text-align: center;
@@ -47,7 +47,8 @@ export default {
 .tab-bar-item img {
   width: 24px;
   height: 24px;
+  margin-top: 3px;
   vertical-align: middle;
-  margin-top: 2px;
+  margin-bottom: 2px;
 }
 </style>
