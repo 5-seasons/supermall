@@ -1,41 +1,41 @@
 <template>
   <tab-bar>
     <tab-bar-item link="/home" activeColor="#c04851">
-      <img slot="item-icon" src="~assets/img/tabbar/home.svg" alt="" />
+      <img slot="item-icon" src="~assets/img/tabbar/home.svg" alt="home.svg" />
       <img
         slot="item-icon-active"
         src="~assets/img/tabbar/home_active.svg"
-        alt=""
+        alt="home_active.svg"
       />
       <div slot="item-text">首页</div>
     </tab-bar-item>
 
     <tab-bar-item link="/sort" activeColor="#c04851">
-      <img slot="item-icon" src="~assets/img/tabbar/sort.svg" alt="" />
+      <img slot="item-icon" src="~assets/img/tabbar/sort.svg" alt="sort.svg" />
       <img
         slot="item-icon-active"
         src="~assets/img/tabbar/sort_active.svg"
-        alt=""
+        alt="sort_active.svg"
       />
       <div slot="item-text">分类</div>
     </tab-bar-item>
 
     <tab-bar-item link="/cart" activeColor="#c04851">
-      <img slot="item-icon" src="~assets/img/tabbar/cart.svg" alt="" />
+      <img slot="item-icon" src="~assets/img/tabbar/cart.svg" alt="cart.svg" />
       <img
         slot="item-icon-active"
         src="~assets/img/tabbar/cart_active.svg"
-        alt=""
+        alt="cart_active.svg"
       />
       <div slot="item-text">购物车</div>
     </tab-bar-item>
 
     <tab-bar-item link="/my" activeColor="#c04851">
-      <img slot="item-icon" src="~assets/img/tabbar/my.svg" alt="" />
+      <img slot="item-icon" src="~assets/img/tabbar/my.svg" alt="my.svg" />
       <img
         slot="item-icon-active"
         src="~assets/img/tabbar/my_active.svg"
-        alt=""
+        alt="my_active.svg"
       />
       <div slot="item-text">我的</div>
     </tab-bar-item>
@@ -47,7 +47,7 @@ import TabBar from "components/common/tabbar/TabBar";
 import TabBarItem from "components/common/tabbar/TabBarItem";
 
 export default {
-  name: "Maintabbar",
+  name: "MainTabBar",
   components: {
     TabBar,
     TabBarItem,
