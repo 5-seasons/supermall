@@ -35,6 +35,7 @@ import Scroll from "components/common/scroll/Scroll";
 import BackTop from "components/content/backTop/BackTop";
 
 import { getHomeMultidata, getHomeGoods } from "network/home";
+import { debounce } from "common/utils";
 
 export default {
   name: "Home",
@@ -74,6 +75,13 @@ export default {
     this.getHomeGoods("pop");
     this.getHomeGoods("new");
     this.getHomeGoods("sell");
+  },
+  mounted() {
+    // 1.图片加载完成的事件监听
+    const refresh = debounce(this.$refs.scroll.refresh, 50);
+    this.$bus.$on("itemImageLoad", () => {
+      refresh();
+    });
   },
   methods: {
     /**

@@ -45,14 +45,19 @@
       this.scroll.on('pullingUp', () => {
         this.$emit('pullingUp')
       })
+      // console.log(this.scroll);//有一个scrollerHeight: 4629
     },
     methods: {
       scrollTo(x, y, time=300) {
-        this.scroll.scrollTo(x, y, time)
+        this.scroll && this.scroll.scrollTo(x, y, time)
       },
       finishPullUp() {
-        this.scroll.finishPullUp()
-      }
+        this.scroll && this.scroll.finishPullUp()
+      },
+      refresh() {
+      console.log("防抖");
+        this.scroll && this.scroll.refresh()
+      },
     }
   }
 </script>
