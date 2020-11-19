@@ -1,6 +1,13 @@
 <template>
   <div id="home">
     <nav-bar class="home-nav"><div slot="center">购物街</div></nav-bar>
+    <tab-control
+      :titles="['流行', '新款', '精选']"
+      @tabClick="tabClick"
+      ref="tabControl1"
+      class="tab-control"
+      v-show="isTabFixed"
+    />
     <scroll
       class="content"
       ref="scroll"
@@ -9,13 +16,13 @@
       :pull-up-load="true"
       @pullingUp="loadMore"
     >
-      <home-swiper :banners="banners" />
+      <home-swiper :banners="banners" @swiperImageLoad="swiperImageLoad" />
       <recommend-view :recommends="recommends" />
       <feature-view />
       <tab-control
-        class="tab-control"
         :titles="['流行', '新款', '精选']"
         @tabClick="tabClick"
+        ref="tabControl2"
       />
       <goods-list :goods="showGoods" />
     </scroll>
@@ -60,6 +67,9 @@ export default {
       },
       currentType: "pop",
       isShowBackTop: false,
+      tabOffsetTop: 0,
+      isTabFixed: false,
+      // saveY: 0,
     };
   },
   computed: {
@@ -67,6 +77,19 @@ export default {
       return this.goods[this.currentType].list;
     },
   },
+
+  //better-scroll 2.x 似乎可以让home保持原来的位置，不需要下面的代码
+  /* destroyed() {
+    console.log("home destroyed");
+  },
+  activated() {
+    this.$refs.scroll.scrollTo(0, this.saveY, 0);
+    this.$refs.scroll.refresh();
+  },
+  deactivated() {
+    this.saveY = this.$refs.scroll.getScrollY();
+  },
+ */
   created() {
     // 1.请求多个数据
     this.getHomeMultidata();
@@ -83,6 +106,7 @@ export default {
       refresh();
     });
   },
+
   methods: {
     /**
      * 事件监听相关的方法
@@ -99,23 +123,31 @@ export default {
           this.currentType = "sell";
           break;
       }
+      this.$refs.tabControl1.currentIndex = index;
+      this.$refs.tabControl2.currentIndex = index;
     },
     backTopClick() {
       this.$refs.scroll.scrollTo(0, 0);
     },
     contentScroll(position) {
+      // 1.判断BackTop是否显示
       this.isShowBackTop = -position.y > 1000;
+
+      // 2.决定tabControl是否吸顶(position: fixed)
+      this.isTabFixed = -position.y > this.tabOffsetTop;
     },
     loadMore() {
       this.getHomeGoods(this.currentType);
+    },
+    swiperImageLoad() {
+      this.tabOffsetTop = this.$refs.tabControl2.$el.offsetTop;
     },
     /**
      * 网络请求相关的方法
      */
     getHomeMultidata() {
       getHomeMultidata().then((res) => {
-        // this.result = res;
-        // console.log(res);
+        // console.log(res);//打印home/multidata接口的数据
         this.banners = res.data.banner.list;
         this.recommends = res.data.recommend.list;
       });
@@ -126,7 +158,9 @@ export default {
         this.goods[type].list.push(...res.data.list);
         this.goods[type].page += 1;
 
+        //完成上拉加载更多
         this.$refs.scroll.finishPullUp();
+        // console.log(res);//打印home/data接口的数据
       });
     },
   },
@@ -143,18 +177,14 @@ export default {
   background-color: var(--color-tint);
   color: #fff;
 
-  position: fixed;
+  /*在使用浏览器原生滚动时, 为了让导航不跟随一起滚动*/
+  /* position: fixed;
   left: 0;
   right: 0;
   top: 0;
-  z-index: 9;
+  z-index: 9; */
 }
 
-.tab-control {
-  position: sticky;
-  top: 44px;
-  z-index: 9;
-}
 .content {
   overflow: hidden;
 
@@ -163,6 +193,11 @@ export default {
   bottom: 49px;
   left: 0;
   right: 0;
+}
+
+.tab-control {
+  position: relative;
+  z-index: 9;
 }
 
 /* .content {
