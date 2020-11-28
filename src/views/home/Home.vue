@@ -43,6 +43,7 @@ import BackTop from "components/content/backTop/BackTop";
 
 import { getHomeMultidata, getHomeGoods } from "network/home";
 import { debounce } from "common/utils";
+import { itemListenerMixin } from "common/mixin"
 
 export default {
   name: "Home",
@@ -56,6 +57,7 @@ export default {
     Scroll,
     BackTop,
   },
+  mixins:[itemListenerMixin],
   data() {
     return {
       banners: [],
@@ -69,7 +71,7 @@ export default {
       isShowBackTop: false,
       tabOffsetTop: 0,
       isTabFixed: false,
-      // saveY: 0,
+      saveY: 0,
     };
   },
   computed: {
@@ -79,17 +81,18 @@ export default {
   },
 
   //better-scroll 2.x 似乎可以让home保持原来的位置，不需要下面的代码
-  /* destroyed() {
-    console.log("home destroyed");
-  },
   activated() {
-    this.$refs.scroll.scrollTo(0, this.saveY, 0);
+    // 返回页面时刷新并滚动到离开时记录的位置  先刷新refresh再跳转scrollTo
     this.$refs.scroll.refresh();
+    this.$refs.scroll.scrollTo(0, this.saveY ,0);
   },
   deactivated() {
+    // 1.离开页面时记录页面离开时的滚动位置Y
     this.saveY = this.$refs.scroll.getScrollY();
+
+    // 2.离开页面时取消全局事件的监听
+    this.$bus.$off('itemImgLoad', this.itemImgListener)
   },
- */
   created() {
     // 1.请求多个数据
     this.getHomeMultidata();
@@ -99,14 +102,6 @@ export default {
     this.getHomeGoods("new");
     this.getHomeGoods("sell");
   },
-  mounted() {
-    // 1.图片加载完成的事件监听
-    const refresh = debounce(this.$refs.scroll.refresh, 50);
-    this.$bus.$on("itemImageLoad", () => {
-      refresh();
-    });
-  },
-
   methods: {
     /**
      * 事件监听相关的方法
@@ -123,8 +118,13 @@ export default {
           this.currentType = "sell";
           break;
       }
+
+      // 让tabcontrol保持一致
       this.$refs.tabControl1.currentIndex = index;
       this.$refs.tabControl2.currentIndex = index;
+
+      // 点击tabcontrol滚动到相应位置  这个功能不要似乎更好
+      // this.$refs.scroll.scrollTo(0,-this.tabOffsetTop)
     },
     backTopClick() {
       this.$refs.scroll.scrollTo(0, 0);
@@ -140,6 +140,7 @@ export default {
       this.getHomeGoods(this.currentType);
     },
     swiperImageLoad() {
+      // 获取tabControl的offsetTop  通过$el属性获取组件中的元素
       this.tabOffsetTop = this.$refs.tabControl2.$el.offsetTop;
     },
     /**

@@ -24,7 +24,6 @@ export default {
   data() {
     return {
       scroll: null,
-      message: "inspired by iscroll",
     };
   },
   mounted() {
@@ -62,9 +61,9 @@ export default {
     finishPullUp() {
       this.scroll && this.scroll.finishPullUp();
     },
-    // getScrollY() {
-    //   return this.scroll ? this.scroll.y : 0;
-    // },
+    getScrollY() {
+      return this.scroll ? this.scroll.y : 0;
+    },
   },
 };
 </script>

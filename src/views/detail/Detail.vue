@@ -1,13 +1,15 @@
 <template>
   <div id="detail">
     <detail-nav-bar class="detail-nav" />
-    <!-- <scroll class="content" ref="scroll"> -->
+    <scroll class="content" ref="scroll">
       <detail-swiper :top-images="topImages" />
       <detail-base-info :goods="goods" />
       <detail-shop-info :shop="shop" />
-      <!-- <detail-goods-info :detail-info="detailInfo" @imageLoad="imageLoad" />
+      <detail-goods-info :detail-info="detailInfo" @imageLoad="imageLoad" />
       <detail-param-info :param-info="paramInfo" />
-    </scroll> -->
+      <detail-comment-info :comment-info="commentInfo" />
+      <goods-list :goods="goodsList" />
+    </scroll>
   </div>
 </template>
 
@@ -16,13 +18,18 @@ import DetailNavBar from "./childComps/DetailNavBar";
 import DetailSwiper from "./childComps/DetailSwiper";
 import DetailBaseInfo from "./childComps/DetailBaseInfo";
 import DetailShopInfo from "./childComps/DetailShopInfo";
-// import DetailGoodsInfo from "./childComps/DetailGoodsInfo";
-// import DetailParamInfo from "./childComps/DetailParamInfo";
+import DetailGoodsInfo from "./childComps/DetailGoodsInfo";
+import DetailParamInfo from "./childComps/DetailParamInfo";
+import DetailCommentInfo from "./childComps/DetailCommentInfo";
 
-// import Scroll from "components/common/scroll/Scroll";
+import GoodsList from "components/content/goods/GoodsList"
 
+import Scroll from "components/common/scroll/Scroll";
 
-import { getDetail,Goods, Shop, GoodsParam } from "network/detail";
+import { getDetail, getRecommend, Goods, Shop, GoodsParam } from "network/detail";
+import { debounce } from 'common/utils';
+import { itemListenerMixin } from "common/mixin"
+
 export default {
   name: "Detail",
   components: {
@@ -30,74 +37,105 @@ export default {
     DetailSwiper,
     DetailBaseInfo,
     DetailShopInfo,
-    // DetailGoodsInfo,
-    // DetailParamInfo,
-    // Scroll,
+    DetailGoodsInfo,
+    DetailParamInfo,
+    DetailCommentInfo,
+    GoodsList,
+    Scroll,
   },
+  mixins:[itemListenerMixin],
   data() {
     return {
-      iid: '',
+      iid: "",
       topImages: [],
       goods: {},
       shop: {},
       detailInfo: {},
       paramInfo: {},
+      commentInfo: {},
+      goodsList: [],
+
     };
   },
   created() {
-    //保存GoodsItem中传入的iid
+    // 1.保存GoodsItem中传入的iid
     this.iid = this.$route.params.iid;
 
-    // 2.根据iid请求详情数据
-    getDetail(this.iid).then((res) => {
-      console.log(res);//打印detail接口的数据
+    // 2.发送商品详情请求
+    this._getDetail(this.iid);
 
-      // 1.获取顶部的轮播图数据
-      const data = res.result;
-      this.topImages = data.itemInfo.topImages;
-
-      // 2.获取商品信息
-      this.goods = new Goods(
-        data.itemInfo,
-        data.columns,
-        data.shopInfo.services
-      );
-
-      // 3.创建店铺信息的对象
-      this.shop = new Shop(data.shopInfo);
-
-    //   // 4.保存商品的详情数据
-    //   this.detailInfo = data.detailInfo;
-
-    //   // 5.获取参数的信息
-    //   this.paramInfo = new GoodsParam(
-    //     data.itemParams.info,
-    //     data.itemParams.rule
-    //   );
-    });
+    // 3.发送商品推荐请求
+    this._getRecommend();
+  },
+  destroyed(){
+    this.$bus.$off('itemImgLoad', this.itemImgListener)
   },
   methods: {
     imageLoad() {
       this.$refs.scroll.refresh();
+      // this.refresh()
     },
+    _getDetail(iid) {
+      getDetail(iid).then((res) => {
+        // console.log(res);
+
+        // 1.获取数据
+        const data = res.result;
+
+        // 2.获取顶部的图片数据
+        this.topImages = data.itemInfo.topImages;
+
+        // 3.获取商品信息
+        this.goods = new Goods(
+          data.itemInfo,
+          data.columns,
+          data.shopInfo.services
+        );
+
+        // 4.获取店铺信息
+        this.shop = new Shop(data.shopInfo);
+
+        // 5.获取商品详情数据
+        this.detailInfo = data.detailInfo;
+
+        // 6.获取参数信息
+        this.paramInfo = new GoodsParam(
+          data.itemParams.info,
+          data.itemParams.rule
+        );
+
+        // 7.获取评论数据
+        if (data.rate.list) {
+          this.commentInfo = data.rate.list[0];
+        }
+      });
+    },
+    _getRecommend() {
+      getRecommend().then(res => {
+        // console.log(res);
+
+        this.goodsList = res.data.list
+      })
+    }
   },
 };
 </script>
 
 <style scoped>
- /* #detail {
-    position: relative;
-    background-color: #fff;
-    height: 100vh;
-  } */
+#detail {
+  position: relative;
+  background-color: var(--color-background);
+  height: 100vh;
+  z-index: 9;
+}
 
-  /* .detail-nav {
-    position: relative;
-    z-index: 9;
-    background-color: #fff;
-  } */
+.detail-nav {
+  position: relative;
+  z-index: 9;
+  background-color: var(--color-background);
+}
 
-  /* .content {
-    height: calc(100% - 44px);
-  } */
+.content {
+  height: calc(100% - 44px);
+}
 </style>

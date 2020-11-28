@@ -63,6 +63,7 @@ export default {
 .shop-info {
   padding: 10px;
   border-bottom: 5px solid #f2f5f8;
+  background-color: var(--color-background);
 }
 
 .shop-top {

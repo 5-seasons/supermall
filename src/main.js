@@ -5,10 +5,11 @@ import store from './store'
 
 Vue.config.productionTip = false
 
+//添加事件总线对象
 Vue.prototype.$bus = new Vue()
 
 new Vue({
+  render: h => h(App),
   router,
   store,
-  render: h => h(App)
 }).$mount('#app')

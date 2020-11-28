@@ -7,12 +7,12 @@ export function request(config) {
     timeout: 5000
   })
 
-  // 2.axios的拦截器
-  // 2.1.请求拦截的作用
+  // 2.axios的拦截器（过滤器）
+  // 2.1.请求拦截
   instance.interceptors.request.use(config => {
     return config
   }, err => {
-    // console.log(err);
+    console.log(err);
   })
 
   // 2.2.响应拦截

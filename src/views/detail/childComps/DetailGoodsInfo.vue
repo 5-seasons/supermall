@@ -1,8 +1,7 @@
 <template>
   <div v-if="Object.keys(detailInfo).length !== 0" class="goods-info">
     <div class="info-desc clear-fix">
-      <div class="start">
-      </div>
+      <div class="start"></div>
       <div class="desc">{{detailInfo.desc}}</div>
       <div class="end"></div>
     </div>
@@ -29,7 +28,7 @@
     },
     methods: {
 	    imgLoad() {
-        // 判断, 所有的图片都加载完了, 那么进行一次回调就可以了.
+        // 判断：所有的图片都加载完了, 那么进行一次回调就可以了  ps:也可以用防抖实现
         if (++this.counter === this.imagesLength) {
           this.$emit('imageLoad');
         }
@@ -84,13 +83,15 @@
 
   .info-desc .desc {
     padding: 15px 0;
-    font-size: 14px;
+    font-size: 12px;
+    text-indent: 2em;
+    line-height: 1.4;
   }
 
   .info-key {
     margin: 10px 0 10px 15px;
     color: #333;
-    font-size: 15px;
+    font-size: 14px;
   }
 
   .info-list img {
