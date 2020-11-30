@@ -47,8 +47,8 @@ npm run build
 - [x] tabControl的吸顶效果
 - [x] 高亮显示选中tabControl
 - [x] 根据tabControl动态展示不同类型商品
-- [x] 监听跳转顶部按钮
-- [x] 懒加载
+- [x] 回顶部按钮
+- [x] 路由懒加载
 - [x] 下拉加载更多
 - [ ] tabControl的左右滑动切换效果
 - [ ] 添加商品到购物车
