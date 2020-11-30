@@ -13,6 +13,7 @@
       ref="scroll"
       :probe-type="3"
       @scroll="contentScroll"
+      :click="true"
       :pull-up-load="true"
       @pullingUp="loadMore"
     >
@@ -84,7 +85,7 @@ export default {
   activated() {
     // 返回页面时刷新并滚动到离开时记录的位置  先刷新refresh再跳转scrollTo
     this.$refs.scroll.refresh();
-    this.$refs.scroll.scrollTo(0, this.saveY ,0);
+    this.$refs.scroll.scrollTo(0, this.saveY , 0);
   },
   deactivated() {
     // 1.离开页面时记录页面离开时的滚动位置Y
@@ -123,8 +124,8 @@ export default {
       this.$refs.tabControl1.currentIndex = index;
       this.$refs.tabControl2.currentIndex = index;
 
-      // 点击tabcontrol滚动到相应位置  这个功能不要似乎更好
-      // this.$refs.scroll.scrollTo(0,-this.tabOffsetTop)
+      // 点击tabcontrol滚动到相应位置  (不确定要不要这个功能)
+      this.$refs.scroll.scrollTo(0, -this.tabOffsetTop, 0)
     },
     backTopClick() {
       this.$refs.scroll.scrollTo(0, 0);

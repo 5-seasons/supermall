@@ -1,6 +1,6 @@
 <template>
   <div class="back-top">
-    <img src="~assets/img/common/back-top.png" alt="back-top">
+    <img src="~assets/img/common/back-top.png" alt="">
   </div>
 </template>
 
@@ -20,5 +20,7 @@
   .back-top img {
     width: 43px;
     height: 43px;
+    opacity: 0.6;
+    vertical-align: middle;
   }
 </style>
