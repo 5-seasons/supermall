@@ -20,7 +20,7 @@
   .back-top img {
     width: 43px;
     height: 43px;
-    opacity: 0.6;
+    opacity: 0.7;
     vertical-align: middle;
   }
 </style>

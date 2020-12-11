@@ -7,9 +7,9 @@ VueRouter.prototype.push = function push(location) {
 }
 
 const Home = () => import('views/home/Home')
-const Sort = () => import('views/sort/Sort')
+const Category = () => import('views/category/Category')
 const Cart = () => import('views/cart/Cart')
-const My = () => import('views/my/My')
+const Profile = () => import('views/profile/Profile')
 const Detail = () => import('views/detail/Detail')
 
 //安装插件
@@ -26,16 +26,16 @@ const routes = [
     component: Home
   },
   {
-    path: '/sort',
-    component: Sort
+    path: '/category',
+    component: Category
   },
   {
     path: '/cart',
     component: Cart
   },
   {
-    path: '/my',
-    component: My
+    path: '/profile',
+    component: Profile
   },
   {
     path: '/detail/:iid',

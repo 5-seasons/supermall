@@ -34,133 +34,139 @@
       </div>
     </div>
     <div class="shop-bottom">
-      <div class="enter-shop">进店逛逛</div>
+      <a class="all-goods" :href="shop.allGoods">全部宝贝</a>
+      <a class="go-shop" :href="shop.url">进店逛逛</a>
     </div>
   </div>
 </template>
 
 <script>
-export default {
-  name: "DetailShopInfo",
-  props: {
-    shop: {
-      type: Object,
-      default() {
-        return {};
+  export default {
+    name: "DetailShopInfo",
+    props: {
+      shop: {
+        type: Object,
+        default() {
+          return {};
+        },
       },
     },
-  },
-  filters: {
-    sellCountFilter: function (value) {
-      if (value < 10000) return value;
-      return (value / 10000).toFixed(1) + "w";
+    filters: {
+      sellCountFilter: function (value) {
+        if (value < 10000) return value;
+        return (value / 10000).toFixed(1) + "w";
+      },
     },
-  },
-};
+  };
 </script>
 
 <style scoped>
-.shop-info {
-  padding: 10px;
-  border-bottom: 5px solid #f2f5f8;
-  background-color: var(--color-background);
-}
+  .shop-info {
+    padding: 20px 8px;
+    border-bottom: 5px solid #f2f5f8;
+  }
 
-.shop-top {
-  line-height: 45px;
-  /* 让元素垂直中心对齐 */
-  display: flex;
-  align-items: center;
-}
+  .shop-top {
+    line-height: 45px;
+    /* 让元素水平居中和垂直居中 */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
 
-.shop-top img {
-  width: 45px;
-  height: 45px;
-  border-radius: 50%;
-  border: 1px solid rgba(0, 0, 0, 0.1);
-}
+  .shop-top img {
+    width: 45px;
+    height: 45px;
+    /* border-radius: 50%; */
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    margin-right: 8px;
+  }
 
-.shop-top .title {
-  margin-left: 10px;
-  vertical-align: center;
-}
+  .shop-top .title {
+    margin-left: 8px;
+  }
 
-.shop-middle {
-  margin-top: 15px;
-  display: flex;
-  align-items: center;
-}
+  .shop-middle {
+    margin-top: 15px;
+    display: flex;
+    align-items: center;
+  }
 
-.shop-middle-item {
-  flex: 1;
-}
+  .shop-middle-item {
+    flex: 1;
+  }
 
-.shop-middle-left {
-  display: flex;
-  justify-content: space-evenly;
-  color: #333;
-  text-align: center;
-  border-right: 1px solid rgba(0, 0, 0, 0.1);
-}
+  .shop-middle-left {
+    display: flex;
+    justify-content: space-evenly;
+    color: #333;
+    text-align: center;
+    border-right: 1px solid rgba(0, 0, 0, 0.1);
+  }
 
-.goods-count,
-.sells-count {
-  font-size: 18px;
-}
+  .goods-count,
+  .sells-count {
+    font-size: 18px;
+  }
 
-.goods-text,
-.sells-text {
-  margin-top: 10px;
-  font-size: 12px;
-}
+  .goods-text,
+  .sells-text {
+    margin-top: 10px;
+    font-size: 12px;
+  }
 
-.shop-middle-right {
-  font-size: 13px;
-  color: #333;
-}
+  .shop-middle-right {
+    font-size: 13px;
+    color: #333;
+  }
 
-.shop-middle-right table {
-  width: 120px;
-  margin-left: 20px;
-}
+  .shop-middle-right table {
+    width: 120px;
+    margin-left: 30px;
+  }
 
-.shop-middle-right table td {
-  padding: 5px 0;
-}
+  .shop-middle-right table td {
+    padding: 5px 0;
+  }
 
-.shop-middle-right .score {
-  /* color: #5ea732; */
-  color: #47b34f;
-}
+  .shop-middle-right .score, .shop-middle-right .better {
+    color: #47b34f;
+  }
 
-.shop-middle-right .score-better {
-  /* color: #f13e3a; */
-  color: #e93b3d;
-}
+  .shop-middle-right .score-better, .shop-middle-right .better-more {
+    color: #e93b3d;
+  }
 
-.shop-middle-right .better  {
-  /* color: #5ea732; */
-  color: #47b34f;
-}
+  .shop-bottom {
+    display: flex;
+    justify-content: space-evenly;
+    margin-top: 10px;
 
-.shop-middle-right .better-more {
-  /* color: #f13e3a; */
-  color: #e93b3d;
-}
+    font-size: 14px;
+    text-align: center;
+  }
 
-.shop-bottom {
-  text-align: center;
-  margin-top: 10px;
-}
+  .all-goods {  
+    flex: 1;
+    border:1px solid rgba(255,0,54,0.5);
+    border-radius: 12px;
 
-.enter-shop {
-  display: inline-block;
-  font-size: 14px;
-  background-color: #f2f5f8;
-  width: 150px;
-  height: 30px;
-  text-align: center;
-  line-height: 30px;
-  border-radius: 10px;
-}
+    height: 24px;
+    line-height: 22px;
+    color: rgba(255,0,54,0.8);
+    display: inline-block;
+    max-width: 96px;
+  }
+
+  .go-shop {
+    flex: 1;
+    border:1px solid rgba(255,0,54,0.5);
+    border-radius: 12px;
+
+    height: 24px;
+    line-height: 22px;
+    color: rgba(255,0,54,0.8);
+    display: inline-block;
+    max-width: 96px;
+  }
 </style>

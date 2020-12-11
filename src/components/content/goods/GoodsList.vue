@@ -1,6 +1,7 @@
 <template>
   <div class="goods">
-    <goods-list-item v-for="item in goods" :goods-item="item"/>
+    <!-- :key="item.iid"会有重复的 故使用:key="item.acm" 详情页的推荐商品没有iid -->
+    <goods-list-item v-for="item in goods" :key="item.acm" :goods-item="item" />
   </div>
 </template>
 
@@ -26,15 +27,10 @@
 <style scoped>
   .goods {
     display: flex;
-
     flex-wrap: wrap;
-    justify-content: space-around;
-    padding: 3px;
+    /* justify-content: space-around;
+    padding: 3px; */
 
-    /* flex-flow: row wrap;
-    justify-content: space-evenly; */
-   
+    justify-content: space-evenly;
   }
-
-
 </style>

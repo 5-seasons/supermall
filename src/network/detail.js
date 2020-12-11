@@ -21,7 +21,7 @@ export class Goods {
     this.desc = itemInfo.desc
     this.newPrice = itemInfo.price
     this.oldPrice = itemInfo.oldPrice
-    this.discount = itemInfo.discountDesc
+    this.discountDesc = itemInfo.discountDesc  // 折扣
     this.discountBgColor = itemInfo.discountBgColor
     this.columns = columns
     this.services = services
@@ -33,18 +33,23 @@ export class Shop {
   constructor(shopInfo) {
     this.logo = shopInfo.shopLogo;
     this.name = shopInfo.name;
-    this.fans = shopInfo.cFans;
-    this.sells = shopInfo.cSells;
-    this.score = shopInfo.score;
-    this.goodsCount = shopInfo.cGoods
+    this.fans = shopInfo.cFans;  // 关注人数
+    this.goodsCount = shopInfo.cGoods;  // 在架商品
+    this.sells = shopInfo.cSells;  // 累计销量
+    this.score = shopInfo.score;  // 评分
+    this.allGoods = shopInfo.allGoodsUrl
+    this.url = shopInfo.shopUrl;
   }
 }
 
 export class GoodsParam {
   constructor(info, rule) {
-    // images可能没有值(某些商品有值, 某些没有值)
-    this.image = info.images ? info.images[0] : '';
-    this.infos = info.set;
+    this.sizeInfo = rule.key
     this.sizes = rule.tables;
+    this.disclaimer = rule.disclaimer;
+    this.productInfo = info.key
+    this.infos = info.set;
+    // images可能没有值(某些商品有值, 某些没有值 例如：流行页第四个商品就有值)
+    this.images = info.images ? info.images : '';
   }
 }

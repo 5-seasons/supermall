@@ -1,41 +1,41 @@
 <template>
   <tab-bar>
     <tab-bar-item link="/home" activeColor="#c04851">
-      <img slot="item-icon" src="~assets/img/tabbar/home.svg" alt="home.svg" />
+      <img slot="item-icon" src="~assets/img/tabbar/home.svg" alt="" />
       <img
         slot="item-icon-active"
         src="~assets/img/tabbar/home_active.svg"
-        alt="home_active.svg"
+        alt=""
       />
       <div slot="item-text">首页</div>
     </tab-bar-item>
 
-    <tab-bar-item link="/sort" activeColor="#c04851">
-      <img slot="item-icon" src="~assets/img/tabbar/sort.svg" alt="sort.svg" />
+    <tab-bar-item link="/category" activeColor="#c04851">
+      <img slot="item-icon" src="~assets/img/tabbar/category.svg" alt="" />
       <img
         slot="item-icon-active"
-        src="~assets/img/tabbar/sort_active.svg"
-        alt="sort_active.svg"
+        src="~assets/img/tabbar/category_active.svg"
+        alt=""
       />
       <div slot="item-text">分类</div>
     </tab-bar-item>
 
     <tab-bar-item link="/cart" activeColor="#c04851">
-      <img slot="item-icon" src="~assets/img/tabbar/cart.svg" alt="cart.svg" />
+      <img slot="item-icon" src="~assets/img/tabbar/cart.svg" alt="" />
       <img
         slot="item-icon-active"
         src="~assets/img/tabbar/cart_active.svg"
-        alt="cart_active.svg"
+        alt=""
       />
       <div slot="item-text">购物车</div>
     </tab-bar-item>
 
-    <tab-bar-item link="/my" activeColor="#c04851">
-      <img slot="item-icon" src="~assets/img/tabbar/my.svg" alt="my.svg" />
+    <tab-bar-item link="/profile" activeColor="#c04851">
+      <img slot="item-icon" src="~assets/img/tabbar/profile.svg" alt="" />
       <img
         slot="item-icon-active"
-        src="~assets/img/tabbar/my_active.svg"
-        alt="my_active.svg"
+        src="~assets/img/tabbar/profile_active.svg"
+        alt=""
       />
       <div slot="item-text">我的</div>
     </tab-bar-item>

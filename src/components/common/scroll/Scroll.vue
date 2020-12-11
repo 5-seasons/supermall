@@ -30,7 +30,7 @@ export default {
      */
     click: {
       type: Boolean,
-      default: false
+      default: true
     },
     /**
      * 是否派发滚动到底部的事件，用于上拉加载
@@ -76,8 +76,8 @@ export default {
       this.scroll && this.scroll.scrollTo(x, y, time);
     },
     refresh() {
-      // console.log("只打印一次即只刷新一次，实现防抖");
       this.scroll && this.scroll.refresh();
+      // console.log("只打印一次即只刷新一次，实现防抖");
     },
     finishPullUp() {
       this.scroll && this.scroll.finishPullUp();
