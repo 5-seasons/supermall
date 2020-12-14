@@ -1,18 +1,12 @@
 <template>
   <div id="category">
-    <nav-bar class="nav-bar"><div slot="center">商品分类</div></nav-bar>
+    <nav-bar class="category-nav"><div slot="center">商品分类</div></nav-bar>
     <div class="content">
       <tab-menu :categories="categories" @selectItem="selectItem" />
-
       <scroll id="tab-content" :data="[categoryData]" ref="scroll">
-        <div>
-          <tab-content-category :subcategories="showSubcategory" />
-          <tab-control
-            :titles="['综合', '新品', '销量']"
-            @itemClick="tabClick"
-          />
-          <goods-list :goods="showCategoryDetail" />
-        </div>
+        <tab-content-category :subcategories="showSubcategory" />
+        <tab-control :titles="['综合', '新品', '销量']" @itemClick="tabClick" />
+        <goods-list :goods="showCategoryDetail" />
       </scroll>
     </div>
   </div>
@@ -28,13 +22,9 @@
   import Scroll from "components/common/scroll/Scroll";
   import GoodsList from "components/content/goods/GoodsList";
 
-  import {
-    getCategory,
-    getSubcategory,
-    getCategoryDetail,
-  } from "network/category";
+  import { getCategory, getSubcategory, getCategoryDetail, } from "network/category";
 
-  import { tabControlMixin } from "@/common/mixin";
+  import { itemListenerMixin, tabControlMixin } from "common/mixin";
 
   export default {
     name: "Category",
@@ -46,22 +36,13 @@
       TabContentCategory,
       GoodsList,
     },
-    mixins: [tabControlMixin],
+    mixins: [itemListenerMixin, tabControlMixin],
     data() {
       return {
         categories: [],
         categoryData: {},
         currentIndex: -1,
       };
-    },
-    created() {
-      // 1.请求分类数据
-      this._getCategory();
-
-      // 2.监听图片加载完成
-      this.$bus.$on("imgLoad", () => {
-        this.$refs.scroll.refresh();
-      });
     },
     computed: {
       showSubcategory() {
@@ -85,9 +66,9 @@
             this.categoryData[i] = {
               subcategories: {},
               categoryDetail: {
-                pop: [],
-                new: [],
-                sell: [],
+                'pop': [],
+                'new': [],
+                'sell': [],
               },
             };
           }
@@ -123,6 +104,18 @@
         this._getSubcategories(index);
       },
     },
+    created() {
+      // 1.请求分类数据
+      this._getCategory();
+
+      // 2.监听图片加载完成
+      // this.$bus.$on("imgLoad", () => {
+      //   this.$refs.scroll.refresh();
+      // });
+    },
+    mounted() {
+
+    }
   };
 </script>
 
@@ -132,11 +125,10 @@
     position: relative;
   }
 
-  .nav-bar {
+  .category-nav {
     background-color: var(--color-tint);
     font-weight: 700;
     color: #fff;
-    z-index: 99;
   }
 
   .content {
