@@ -44,9 +44,9 @@ export class Shop {
 
 export class GoodsParam {
   constructor(info, rule) {
-    this.sizeInfo = rule.key
-    this.sizes = rule.tables;
-    this.disclaimer = rule.disclaimer;
+    this.sizeInfo = rule ? rule.key : '';
+    this.sizes = rule ? rule.tables : '';
+    this.disclaimer = rule ? rule.disclaimer : '';
     this.productInfo = info.key
     this.infos = info.set;
     // images可能没有值(某些商品有值, 某些没有值 例如：流行页第四个商品就有值)
