@@ -58,6 +58,19 @@ npm run build
 - [ ] 登录注册
 - [ ] 支付系统
 
+## 部分示意图
+
+![2021-03-29 110848.png](https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/ee6e6dd9c3754aefb92d4ebcb1dad3c9~tplv-k3u1fbpfcp-watermark.image)
+
+![image.png](https://p1-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/6713a125622c4ea3ad2c661bee3f8332~tplv-k3u1fbpfcp-watermark.image)
+
+![image.png](https://p1-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/fcebfb53ae3f4df593b722c88e8e47b5~tplv-k3u1fbpfcp-watermark.image)
+
+![image.png](https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/5fd1745de9d6415da34592e9e2e177af~tplv-k3u1fbpfcp-watermark.image)
+
+![image.png](https://p9-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/fa87952ffb7a46a88f860cc0ccadc496~tplv-k3u1fbpfcp-watermark.image)
+
+
 ## 致谢：  
 
 >coderwhy提供项目。
