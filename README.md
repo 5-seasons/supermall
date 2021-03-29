@@ -60,18 +60,29 @@ npm run build
 
 ## 部分示意图
 
+**首页：**  
+
 ![2021-03-29 110848.png](https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/ee6e6dd9c3754aefb92d4ebcb1dad3c9~tplv-k3u1fbpfcp-watermark.image)
 
 ![image.png](https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/d8e9483be2a9402a919ab66035f3b7bd~tplv-k3u1fbpfcp-watermark.image)
 
+**详情页：**  
+
 ![image.png](https://p1-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/6713a125622c4ea3ad2c661bee3f8332~tplv-k3u1fbpfcp-watermark.image)
+
+![image.png](https://p9-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/147f4591433749328b0ff3be324b3f54~tplv-k3u1fbpfcp-watermark.image)
+
+**分类页：**   
 
 ![image.png](https://p1-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/fcebfb53ae3f4df593b722c88e8e47b5~tplv-k3u1fbpfcp-watermark.image)
 
+**购物车：**  
+
 ![image.png](https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/5fd1745de9d6415da34592e9e2e177af~tplv-k3u1fbpfcp-watermark.image)
 
-![image.png](https://p9-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/fa87952ffb7a46a88f860cc0ccadc496~tplv-k3u1fbpfcp-watermark.image)
+**个人中心：** 
 
+![image.png](https://p9-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/fa87952ffb7a46a88f860cc0ccadc496~tplv-k3u1fbpfcp-watermark.image)
 
 ## 致谢：  
 
